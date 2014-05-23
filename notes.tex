@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\newcommand{\from}{\leftarrow}
+\newcommand{\ap}{\;}
+\newcommand{\Gl}{\lambda}
+
+\begin{document}
+\section{Intro}
+My personal notes on category theory.
+Right now, for my own personal consumption only.
+\section{Notation}
+The argument order for function composition is awkward in category theory. It
+makes sense to write $f \circ g = f(g(x))$, but that means ``do $g$, then $f$``.
+In diagrams, you usually write that by having $g$ to the left and $f$ to the right.
+
+To obviate for this, Stephen Diehl writes his diagrams the other way around
+(without warning)%
+\footnote{\url{http://www.stephendiehl.com/posts/adjunctions.html}}.
+%
+This way, the inputs are to the right and outputs are to the left, just as for
+function composition and application to the arguments. Similarly, in vertical
+composition of things (natural transformations, which we'll get to much later),
+inputs are to the bottom and outputs to the top; moving the bottom to the right
+(a counterclockwise rotation) shows where the two things to compose go.
+
+To match diagrams, we'll indicate domain and codomain with the notation $f: A
+\from B$, instead of $f: B \to A$. Moreover, we'll still assign names from left
+to right, so $f: A \from B$ instead of $f: B \from A$. This also matches with
+application: if $f: A \from B$, when we look at $f\ap b$, we see that the thing to
+the right, $b$, has type $B$, while the thing ``to the left'', $f\ap b$, has type
+$A$.
+
+However, existing notations have the standard meaning, and even $A \from B$ has
+the ``obvious'' meaning one would expect, that is, $B \to A$.
+
+\paragraph{Function composition}
+We can define the function composition $f \circ g: A \from C$ of $f: A \from B$
+and $g: B \from C$ as the function $\Gl x. f\ap (g\ap x)$. Since the order of
+function composition is intended to match application, and since we matched the
+order of application with the types, we also automatically match the order of
+composition with the types. In other words, the type of $\circ$ is now
+\[(f : A
+\from B) \circ (g: B \from C) : A \from C,\]
+instead of
+\[(f : B \to A) \circ (g: C \to B) : C \to A.\]
+%
+Alternatively, we can write
+\[(\circ): (A \from C) \from (A \from B, B \from C).\]
+
+What's notationally cool is that the two $B$ appear next to each other.
+
+Unfortunately, the notation is not so helpful for currying, because we'd get the
+first argument to the right:
+\[(\circ) : (A \from C) \from (B \from C) \from (A \from B)\]
+
+
+\paragraph{Functor composition}
+The usual notation for composition works nicely, as long as we write functors $F
+: C \from D$.
+
+\paragraph{Composition of natural transformations}
+
+% No, the usual notation is the right one for these diagrams. Diagrams with the
+% usual arrows (left to right) would match with inverted function application,
+% which would be too crazy.
+%
+%We write function application
+%${}_xf$
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
